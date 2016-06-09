@@ -142,6 +142,7 @@ cc.Class({
             }
         }
 
+        var start = new Date().getTime();
         for (i = 0; i < bunnys.length; i++) 
         {
             bunny = bunnys[i];
@@ -175,7 +176,8 @@ cc.Class({
                 bunny.speedY = 0;
                 bunny.y = maxY;
             }
-            
         }
+        var end = new Date().getTime();
+        console.log('Update / Delta Time =', end-start, '/', dt*1000, '=', ((end-start)/(dt*1000)).toFixed(2));
     },
 });
