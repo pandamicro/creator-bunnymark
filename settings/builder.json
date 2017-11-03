@@ -1,13 +1,28 @@
 {
+  "appKey": "",
+  "appSecret": "",
+  "encryptJs": true,
   "excludeScenes": [],
+  "includeAnySDK": false,
+  "includeSDKBox": false,
+  "inlineSpriteFrames": true,
+  "inlineSpriteFrames_native": true,
+  "jailbreakPlatform": false,
+  "md5Cache": false,
+  "mergeStartScene": false,
+  "oauthLoginServer": "",
+  "optimizeHotUpdate": false,
   "orientation": {
-    "landscapeLeft": true,
-    "landscapeRight": true,
-    "portrait": false,
-    "upsideDown": false
+    "landscapeLeft": false,
+    "landscapeRight": false,
+    "portrait": true,
+    "upsideDown": true
   },
-  "packageName": "org.cocos2d.creator-bunny",
+  "packageName": "org.cocos2d.creatorbunny",
+  "privateKey": "",
+  "renderMode": "0",
   "startScene": "3c04b3e4-c3a0-46e5-ac0f-f1feca151f24",
-  "title": "creator-bunny",
-  "webOrientation": "portrait"
+  "title": "creatorbunny",
+  "webOrientation": "portrait",
+  "xxteaKey": "13645e62-708f-4d"
 }

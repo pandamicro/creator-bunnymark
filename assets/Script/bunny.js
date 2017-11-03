@@ -25,7 +25,7 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        if (!cc.sys.isNative) {
+        if (!cc.sys.isNative && cc.sys.browserType !== cc.sys.BROWSER_TYPE_WECHAT_GAME) {
             var logo = document.createElement('img');
             logo.src = 'res/raw-assets/resources/HelloWorld.png';
             logo.style.position = 'absolute';
@@ -119,27 +119,25 @@ cc.Class({
     update: function (dt) {
         var bunny, bunnysp, i;
         if (isAdding) {
-            if (count < 20000) {
-                for (i = 0; i < amount; i++) {
-                    bunny = new cc.Node();
-                    bunnysp = bunny.addComponent(cc.Sprite);
-                    bunnysp.spriteFrame = currentFrame;
-                    bunny.speedX = Math.random() * 10;
-                    bunny.speedY = (Math.random() * 10) - 5;
-                    bunny.x = minX + 10;
-                    bunny.y = maxY * 0.7;
-                    bunny.anchorY = 1;
-                    //bunny.alpha = 0.3 + Math.random() * 0.7;
-                    bunnys.push(bunny);
-                    bunny.scale = 0.5 + Math.random()*0.5;
+            for (i = 0; i < amount; i++) {
+                bunny = new cc.Node();
+                bunnysp = bunny.addComponent(cc.Sprite);
+                bunnysp.spriteFrame = currentFrame;
+                bunny.speedX = Math.random() * 10;
+                bunny.speedY = (Math.random() * 10) - 5;
+                bunny.x = minX + 10;
+                bunny.y = maxY * 0.7;
+                bunny.anchorY = 1;
+                //bunny.alpha = 0.3 + Math.random() * 0.7;
+                bunnys.push(bunny);
+                bunny.scale = 0.5 + Math.random()*0.5;
 
-                    bunny.rotation = 360 * (Math.random()*0.2 - 0.1);
+                bunny.rotation = 360 * (Math.random()*0.2 - 0.1);
 
-                    this.node.addChild(bunny);
-                    count++;
-                }
-                number.innerText = count;
+                this.node.addChild(bunny);
+                count++;
             }
+            number.innerText = count;
         }
 
         var start = new Date().getTime();
@@ -147,25 +145,25 @@ cc.Class({
         {
             bunny = bunnys[i];
             
-            var x = (bunny.x += bunny.speedX);
-            var y = (bunny.y -= bunny.speedY);
+            var x = bunny.x + bunny.speedX;
+            var y = bunny.y - bunny.speedY;
             bunny.speedY += gravity;
             
             if (x > maxX)
             {
                 bunny.speedX *= -1;
-                bunny.x = maxX;
+                x = maxX;
             }
             else if (x < minX)
             {
                 bunny.speedX *= -1;
-                bunny.x = minX;
+                x = minX;
             }
             
             if (y < minY)
             {
                 bunny.speedY *= -0.85;
-                bunny.y = minY;
+                y = minY;
                 if (Math.random() > 0.5)
                 {
                     bunny.speedY -= Math.random() * 6;
@@ -174,10 +172,11 @@ cc.Class({
             else if (y > maxY)
             {
                 bunny.speedY = 0;
-                bunny.y = maxY;
+                y = maxY;
             }
+            bunny.setPosition(x, y);
         }
         var end = new Date().getTime();
-        console.log('Update / Delta Time =', end-start, '/', dt*1000, '=', ((end-start)/(dt*1000)).toFixed(2));
+        // console.log('Update / Delta Time =', end-start, '/', dt*1000, '=', ((end-start)/(dt*1000)).toFixed(2));
     },
 });
