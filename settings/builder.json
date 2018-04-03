@@ -1,8 +1,13 @@
 {
   "appKey": "",
   "appSecret": "",
-  "encryptJs": true,
-  "excludeScenes": [],
+  "encryptJs": false,
+  "excludeScenes": [
+    "b683b443-ffe6-4538-b9f6-d20aa8abb21f"
+  ],
+  "fb-instant-games": {
+    "hide": false
+  },
   "includeAnySDK": false,
   "includeSDKBox": false,
   "inlineSpriteFrames": true,
@@ -20,9 +25,17 @@
   },
   "packageName": "org.cocos2d.creatorbunny",
   "privateKey": "",
+  "qqplay": {
+    "orientation": "portrait"
+  },
   "renderMode": "0",
   "startScene": "3c04b3e4-c3a0-46e5-ac0f-f1feca151f24",
-  "title": "creatorbunny",
-  "webOrientation": "portrait",
-  "xxteaKey": "13645e62-708f-4d"
+  "title": "1_7_1_test",
+  "webOrientation": "auto",
+  "wechatgame": {
+    "appid": "wx6ac3f5090a6b99c5",
+    "orientation": "portrait"
+  },
+  "xxteaKey": "a990d126-964d-4f",
+  "zipCompressJs": true
 }
