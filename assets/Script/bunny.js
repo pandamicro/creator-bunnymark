@@ -78,7 +78,7 @@ cc.Class({
             number = this.number;
             number.node.active = true;
             number.node.zIndex = 100;
-            cc.defineGetterSetter(number, 'innerText', function() {
+            cc.js.getset(number, 'innerText', function() {
                 return number.string;
             }, function (value) {
                 number.string = value;

@@ -14,13 +14,10 @@
   "design-resolution-height": 640,
   "design-resolution-width": 960,
   "excluded-modules": [
-    "CCSpriteDistortion",
     "VideoPlayer",
     "WebView",
     "Physics",
     "StudioComponent",
-    "RenderTexture",
-    "Chipmunk",
     "Intersection",
     "Native NetWork"
   ],
