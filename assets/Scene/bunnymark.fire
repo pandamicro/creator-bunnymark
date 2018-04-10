@@ -18,6 +18,7 @@
       }
     ],
     "_active": true,
+    "_level": 0,
     "_components": [],
     "_prefab": null,
     "_id": "3c04b3e4-c3a0-46e5-ac0f-f1feca151f24",
@@ -41,11 +42,18 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.6958116319444444,
-      "y": 0.6958116319444444,
+      "x": 0.5472222222222223,
+      "y": 0.5472222222222223,
       "z": 1
     },
-    "_localZOrder": 2,
+    "_quat": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
+    "_localZOrder": 6,
     "groupIndex": 0,
     "autoReleaseAssets": false
   },
@@ -65,6 +73,7 @@
       }
     ],
     "_active": true,
+    "_level": 0,
     "_components": [
       {
         "__id__": 7
@@ -107,9 +116,16 @@
     },
     "_rotationX": 0,
     "_rotationY": 0,
+    "_quat": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
     "_skewX": 0,
     "_skewY": 0,
-    "_localZOrder": 3,
+    "_localZOrder": 7,
     "groupIndex": 0
   },
   {
@@ -121,6 +137,7 @@
     },
     "_children": [],
     "_active": true,
+    "_level": 0,
     "_components": [
       {
         "__id__": 4
@@ -160,9 +177,16 @@
     },
     "_rotationX": 0,
     "_rotationY": 0,
+    "_quat": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
     "_skewX": 0,
     "_skewY": 0,
-    "_localZOrder": 5,
+    "_localZOrder": 8,
     "groupIndex": 0
   },
   {
@@ -183,7 +207,8 @@
       "a": 255
     },
     "_depth": -1,
-    "_zoomRatio": 1
+    "_zoomRatio": 1,
+    "_targetTexture": null
   },
   {
     "__type__": "cc.Node",
@@ -194,6 +219,7 @@
     },
     "_children": [],
     "_active": true,
+    "_level": 0,
     "_components": [
       {
         "__id__": 6
@@ -233,9 +259,16 @@
     },
     "_rotationX": 0,
     "_rotationY": 0,
+    "_quat": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
     "_skewX": 0,
     "_skewY": 0,
-    "_localZOrder": 6,
+    "_localZOrder": 9,
     "groupIndex": 0
   },
   {
@@ -286,6 +319,22 @@
     "tex": {
       "__uuid__": "577bfc47-f373-4534-9bc2-21e7272f9367"
     },
+    "bunny1": {
+      "__uuid__": "62811df1-e89e-4ae2-860e-f382a88c9097"
+    },
+    "bunny2": {
+      "__uuid__": "20236609-a2be-4fac-bf63-8a5d9607b5f4"
+    },
+    "bunny3": {
+      "__uuid__": "6996f5d0-8dba-4fbc-9c51-5fbe3637d21e"
+    },
+    "bunny4": {
+      "__uuid__": "05011b70-ae6d-43ef-9a08-806fc5447057"
+    },
+    "bunny5": {
+      "__uuid__": "37b386d3-6e46-4516-b403-5d20a930c7b9"
+    },
+    "useAtlas": false,
     "number": {
       "__id__": 6
     }

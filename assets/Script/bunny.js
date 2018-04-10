@@ -45,6 +45,12 @@ cc.Class({
             type: cc.Texture2D,
             default: null
         },
+        bunny1: cc.SpriteFrame,
+        bunny2: cc.SpriteFrame,
+        bunny3: cc.SpriteFrame,
+        bunny4: cc.SpriteFrame,
+        bunny5: cc.SpriteFrame,
+        useAtlas: true,
         number: cc.Label
     },
 
@@ -90,11 +96,21 @@ cc.Class({
         minX = -maxX;
         minY = -maxY;
         
-        bunnyFrames.push( new cc.SpriteFrame(this.tex, cc.rect(2, 47, 26, 37)) );
-        bunnyFrames.push( new cc.SpriteFrame(this.tex, cc.rect(2, 86, 26, 37)) );
-        bunnyFrames.push( new cc.SpriteFrame(this.tex, cc.rect(2, 125, 26, 37)) );
-        bunnyFrames.push( new cc.SpriteFrame(this.tex, cc.rect(2, 164, 26, 37)) );
-        bunnyFrames.push( new cc.SpriteFrame(this.tex, cc.rect(2, 2, 26, 37)) );
+        if (this.useAtlas) {
+            bunnyFrames.push( new cc.SpriteFrame(this.tex, cc.rect(2, 47, 26, 37)) );
+            bunnyFrames.push( new cc.SpriteFrame(this.tex, cc.rect(2, 86, 26, 37)) );
+            bunnyFrames.push( new cc.SpriteFrame(this.tex, cc.rect(2, 125, 26, 37)) );
+            bunnyFrames.push( new cc.SpriteFrame(this.tex, cc.rect(2, 164, 26, 37)) );
+            bunnyFrames.push( new cc.SpriteFrame(this.tex, cc.rect(2, 2, 26, 37)) );
+        }
+        else {
+            bunnyFrames.push(this.bunny1);
+            bunnyFrames.push(this.bunny2);
+            bunnyFrames.push(this.bunny3);
+            bunnyFrames.push(this.bunny4);
+            bunnyFrames.push(this.bunny5);
+            amount = 10;
+        }
         currentFrame = bunnyFrames[0];
         
         // for (var i = 0; i < startBunnyCount; i++) 
