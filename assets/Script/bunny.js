@@ -137,15 +137,9 @@ cc.Class({
             isAdding = true;
         });
         this.node.on('touchend', function () {
-            bunnyType++;
-            bunnyType %= 5;
-            currentFrame = bunnyFrames[bunnyType];
             isAdding = false;
         });
         this.node.on('touchcancel', function () {
-            bunnyType++;
-            bunnyType %= 5;
-            currentFrame = bunnyFrames[bunnyType];
             isAdding = false;
         });
 
@@ -227,10 +221,13 @@ cc.Class({
 
             bunny.rotation = 360 * (Math.random()*0.2 - 0.1);
 
-            this.node.addChild(bunny);
+            bunny.parent = this.node;
             count++;
         }
         number.innerText = count;
+        bunnyType++;
+        bunnyType %= 5;
+        currentFrame = bunnyFrames[bunnyType];
     },
 
     // called every frame, uncomment this function to activate update callback
