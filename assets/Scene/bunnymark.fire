@@ -323,7 +323,7 @@
     "block": {
       "__uuid__": "5215890c-2595-4dfc-93b0-6a73cc304a4a"
     },
-    "drawcallUp": true,
+    "drawcallUp": false,
     "useAtlas": true,
     "bunny1": {
       "__uuid__": "62811df1-e89e-4ae2-860e-f382a88c9097"
