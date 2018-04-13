@@ -53,7 +53,7 @@
       "z": 0,
       "w": 1
     },
-    "_localZOrder": 6,
+    "_localZOrder": 2,
     "groupIndex": 0,
     "autoReleaseAssets": false
   },
@@ -125,7 +125,7 @@
     },
     "_skewX": 0,
     "_skewY": 0,
-    "_localZOrder": 7,
+    "_localZOrder": 3,
     "groupIndex": 0
   },
   {
@@ -186,7 +186,7 @@
     },
     "_skewX": 0,
     "_skewY": 0,
-    "_localZOrder": 8,
+    "_localZOrder": 4,
     "groupIndex": 0
   },
   {
@@ -268,7 +268,7 @@
     },
     "_skewX": 0,
     "_skewY": 0,
-    "_localZOrder": 9,
+    "_localZOrder": 5,
     "groupIndex": 0
   },
   {
@@ -305,7 +305,7 @@
       "width": 480,
       "height": 720
     },
-    "_fitWidth": true,
+    "_fitWidth": false,
     "_fitHeight": true
   },
   {
@@ -319,6 +319,12 @@
     "tex": {
       "__uuid__": "577bfc47-f373-4534-9bc2-21e7272f9367"
     },
+    "levelCount": 1,
+    "block": {
+      "__uuid__": "5215890c-2595-4dfc-93b0-6a73cc304a4a"
+    },
+    "drawcallUp": true,
+    "useAtlas": true,
     "bunny1": {
       "__uuid__": "62811df1-e89e-4ae2-860e-f382a88c9097"
     },
@@ -334,7 +340,6 @@
     "bunny5": {
       "__uuid__": "37b386d3-6e46-4516-b403-5d20a930c7b9"
     },
-    "useAtlas": false,
     "number": {
       "__id__": 6
     }

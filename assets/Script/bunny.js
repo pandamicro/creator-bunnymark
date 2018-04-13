@@ -12,8 +12,9 @@ var minY = 0;
 var startBunnyCount = 2;
 var isAdding = false;
 var count = 0;
-var amount = 100;
 var number;
+
+var amount = 100;
 
 var checking = false;
 var totalDt = 0;
@@ -45,56 +46,37 @@ cc.Class({
             type: cc.Texture2D,
             default: null
         },
+        levelCount: 10,
+        block: cc.SpriteFrame,
+        drawcallUp: true,
+        useAtlas: true,
         bunny1: cc.SpriteFrame,
         bunny2: cc.SpriteFrame,
         bunny3: cc.SpriteFrame,
         bunny4: cc.SpriteFrame,
         bunny5: cc.SpriteFrame,
-        useAtlas: true,
         number: cc.Label
     },
 
     // use this for initialization
     onLoad: function () {
-        if (!cc.sys.isNative && cc.sys.browserType !== cc.sys.BROWSER_TYPE_WECHAT_GAME) {
-            var logo = document.createElement('img');
-            logo.src = 'res/raw-assets/resources/HelloWorld.png';
-            logo.style.position = 'absolute';
-            logo.style.right = '0px';
-            logo.style.bottom = '20px';
-            logo.style.width = '64px';
-            cc.game.container.appendChild(logo);
-            var hint = document.createElement('img');
-            hint.src = 'res/raw-assets/resources/click.png';
-            hint.style.position = 'absolute';
-            hint.style.right = '64px';
-            hint.style.bottom = '30px';
-            cc.game.container.appendChild(hint);
-            number = document.createElement('div');
-            number.style.position = 'absolute';
-            number.style.left = '0px';
-            number.style.width = '100%';
-            number.style.top = '50%';
-            number.style.textAlign = 'center';
-            number.style.color = 'rgb(255, 255, 255)';
-            number.style.font = 'bold 50px Helvetica, Arial';
-            cc.game.container.appendChild(number);
-        }
-        else {
-            number = this.number;
-            number.node.active = true;
-            number.node.zIndex = 100;
-            cc.js.getset(number, 'innerText', function() {
-                return number.string;
-            }, function (value) {
-                number.string = value;
-            });
-        }
+        number = this.number;
+        number.node.active = true;
+        number.node.zIndex = 100;
+        cc.js.getset(number, 'innerText', function() {
+            return number.string;
+        }, function (value) {
+            number.string = value;
+        });
 
         maxX = cc.winSize.width / 2;
         maxY = cc.winSize.height / 2;
         minX = -maxX;
         minY = -maxY;
+
+        for (var i = 0; i < this.levelCount; i++) {
+            bunnys[i] = [];
+        }
         
         if (this.useAtlas) {
             bunnyFrames.push( new cc.SpriteFrame(this.tex, cc.rect(2, 47, 26, 37)) );
@@ -113,31 +95,14 @@ cc.Class({
         }
         currentFrame = bunnyFrames[0];
         
-        // for (var i = 0; i < startBunnyCount; i++) 
-        // {
-        //     var bunny = new cc.Node();
-        //     var bunnysp = bunny.addComponent(cc.Sprite);
-        //     bunnysp.spriteFrame = currentFrame;
-        //     bunny.speedX = Math.random() * 10;
-        //     bunny.speedY = (Math.random() * 10) - 5;
-        //     bunny.x = minX + 10;
-        //     bunny.y = maxY * 0.7;
-            
-        //     bunny.anchorX = 0.5;
-        //     bunny.anchorY = 1;
-
-        //     bunnys.push(bunny);
-
-        //     this.node.addChild(bunny);
-        // }
-        // count = startBunnyCount;
-        // number.innerText = count;
-        
         this.node.on('touchstart', function () {
             isAdding = true;
         });
         this.node.on('touchend', function () {
             isAdding = false;
+            bunnyType++;
+            bunnyType %= 5;
+            currentFrame = bunnyFrames[bunnyType];
         });
         this.node.on('touchcancel', function () {
             isAdding = false;
@@ -205,29 +170,43 @@ cc.Class({
     },
 
     addOnce: function () {
+        let amountPerLevel = Math.floor(amount / this.levelCount);
+        let parent = this.node;
+    
         var bunny, bunnysp, i;
-        for (i = 0; i < amount; i++) {
+        // Add block to break batch
+        if (this.drawcallUp) {
             bunny = new cc.Node();
             bunnysp = bunny.addComponent(cc.Sprite);
-            bunnysp.spriteFrame = currentFrame;
-            bunny.speedX = Math.random() * 10;
-            bunny.speedY = (Math.random() * 10) - 5;
-            bunny.x = minX + 10;
-            bunny.y = maxY * 0.7;
-            bunny.anchorY = 1;
-            //bunny.alpha = 0.3 + Math.random() * 0.7;
-            bunnys.push(bunny);
-            bunny.scale = 0.5 + Math.random()*0.5;
+            bunnysp.spriteFrame = this.block;
+            bunny.setPosition(minX + 124, minY + 168);
+            bunny.parent = parent;
+        }
+        // Add bunnys
+        for (var i = 0; i < this.levelCount; i++) 
+        {
+            var lbunnys = bunnys[i];
+            for (var j = 0; j < amountPerLevel; j++) {
+                bunny = new cc.Node();
+                bunnysp = bunny.addComponent(cc.Sprite);
+                bunnysp.spriteFrame = currentFrame;
+                bunny.speedX = Math.random() * 10;
+                bunny.speedY = (Math.random() * 10) - 5;
+                bunny.setPosition(minX + 10, maxY * 0.7);
+                bunny.anchorY = 1;
+                //bunny.alpha = 0.3 + Math.random() * 0.7;
+                lbunnys.push(bunny);
+                bunny.scale = 0.5 + Math.random()*0.5;
+                bunny.rotation = 360 * (Math.random()*0.2 - 0.1);
 
-            bunny.rotation = 360 * (Math.random()*0.2 - 0.1);
-
-            bunny.parent = this.node;
-            count++;
+                bunny.parent = parent;
+                count++;
+            }
+            var nextContainer = new cc.Node();
+            parent.addChild(nextContainer);
+            parent = nextContainer;
         }
         number.innerText = count;
-        bunnyType++;
-        bunnyType %= 5;
-        currentFrame = bunnyFrames[bunnyType];
     },
 
     // called every frame, uncomment this function to activate update callback
@@ -237,40 +216,44 @@ cc.Class({
         }
 
         // var start = new Date().getTime();
-        for (var i = 0; i < bunnys.length; i++) 
+        for (var i = 0; i < this.levelCount; i++) 
         {
-            var bunny = bunnys[i];
-            
-            var x = bunny.x + bunny.speedX;
-            var y = bunny.y - bunny.speedY;
-            bunny.speedY += gravity;
-            
-            if (x > maxX)
+            var lbunnys = bunnys[i];
+            for (var j = 0; j < lbunnys.length; j++)
             {
-                bunny.speedX *= -1;
-                x = maxX;
-            }
-            else if (x < minX)
-            {
-                bunny.speedX *= -1;
-                x = minX;
-            }
-            
-            if (y < minY)
-            {
-                bunny.speedY *= -0.85;
-                y = minY;
-                if (Math.random() > 0.5)
+                var bunny = lbunnys[j];
+                
+                var x = bunny.x + bunny.speedX;
+                var y = bunny.y - bunny.speedY;
+                bunny.speedY += gravity;
+                
+                if (x > maxX)
                 {
-                    bunny.speedY -= Math.random() * 6;
+                    bunny.speedX *= -1;
+                    x = maxX;
                 }
-            } 
-            else if (y > maxY)
-            {
-                bunny.speedY = 0;
-                y = maxY;
+                else if (x < minX)
+                {
+                    bunny.speedX *= -1;
+                    x = minX;
+                }
+                
+                if (y < minY)
+                {
+                    bunny.speedY *= -0.85;
+                    y = minY;
+                    if (Math.random() > 0.5)
+                    {
+                        bunny.speedY -= Math.random() * 6;
+                    }
+                } 
+                else if (y > maxY)
+                {
+                    bunny.speedY = 0;
+                    y = maxY;
+                }
+                bunny.setPosition(x, y);
             }
-            bunny.setPosition(x, y);
         }
         // var end = new Date().getTime();
         // console.log('Update / Delta Time =', end-start, '/', dt*1000, '=', ((end-start)/(dt*1000)).toFixed(2));
