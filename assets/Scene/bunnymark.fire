@@ -324,22 +324,6 @@
       "__uuid__": "5215890c-2595-4dfc-93b0-6a73cc304a4a"
     },
     "drawcallUp": false,
-    "useAtlas": true,
-    "bunny1": {
-      "__uuid__": "62811df1-e89e-4ae2-860e-f382a88c9097"
-    },
-    "bunny2": {
-      "__uuid__": "20236609-a2be-4fac-bf63-8a5d9607b5f4"
-    },
-    "bunny3": {
-      "__uuid__": "6996f5d0-8dba-4fbc-9c51-5fbe3637d21e"
-    },
-    "bunny4": {
-      "__uuid__": "05011b70-ae6d-43ef-9a08-806fc5447057"
-    },
-    "bunny5": {
-      "__uuid__": "37b386d3-6e46-4516-b403-5d20a930c7b9"
-    },
     "number": {
       "__id__": 6
     }
