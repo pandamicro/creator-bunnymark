@@ -1,3 +1,16 @@
+var PerfCounter = require('./perf-counter');
+
+var _fpsCounter = null;
+var _fps = null;
+
+function fpsAfterDraw () {
+    let now = Date.now();
+    _fpsCounter.frame(now);
+    _fpsCounter.sample(now);
+    _fps.string = _fpsCounter.human().toFixed(2);
+}
+
+
 var bunnys = [];
 var bunnyFrames = [];
 var currentFrame = null;
@@ -49,7 +62,9 @@ cc.Class({
         levelCount: 10,
         block: cc.SpriteFrame,
         drawcallUp: true,
-        number: cc.Label
+        number: cc.Label,
+        fps: cc.Label,
+        showFPS: false
     },
 
     // use this for initialization
@@ -94,6 +109,18 @@ cc.Class({
 
         // this.add();
         // this.addOne();
+
+        if (this.showFPS) {
+            let now = Date.now();
+            _fpsCounter = new PerfCounter('fps', { average: 500 }, now);
+            _fps = this.fps;
+
+            cc.director.on(cc.Director.EVENT_AFTER_DRAW, fpsAfterDraw);
+            cc.director.setDisplayStats(false);
+        }
+        else {
+            this.fps.node.active = false;
+        }
     },
 
     add: function () {
@@ -206,36 +233,33 @@ cc.Class({
             for (var j = 0; j < lbunnys.length; j++)
             {
                 var bunny = lbunnys[j];
-                
-                var x = bunny.x + bunny.speedX;
-                var y = bunny.y - bunny.speedY;
-                bunny.speedY += gravity;
-                
-                if (x > maxX)
-                {
-                    bunny.speedX *= -1;
+
+                let speedX = bunny.speedX;
+                let speedY = bunny.speedY;
+                let x = bunny.x + speedX;
+                let y = bunny.y - speedY;
+                speedY += gravity;
+
+                if (x > maxX) {
+                    speedX = -1 * speedX;
                     x = maxX;
-                }
-                else if (x < minX)
-                {
-                    bunny.speedX *= -1;
+                } else if (x < minX) {
+                    speedX = -1 * speedX;
                     x = minX;
                 }
-                
-                if (y < minY)
-                {
-                    bunny.speedY *= -0.85;
+
+                if (y < minY) {
+                    speedY = -0.85 * speedY;
                     y = minY;
-                    if (Math.random() > 0.5)
-                    {
-                        bunny.speedY -= Math.random() * 6;
+                    if (Math.random() > 0.5) {
+                        speedY = speedY - Math.random() * 6.0;
                     }
-                } 
-                else if (y > maxY)
-                {
-                    bunny.speedY = 0;
+                } else if (y > maxY) {
+                    speedY = 0.0;
                     y = maxY;
                 }
+                bunny.speedX = speedX;
+                bunny.speedY = speedY;
                 bunny.setPosition(x, y);
             }
         }
