@@ -16,8 +16,6 @@
   "excluded-modules": [
     "VideoPlayer",
     "WebView",
-    "Physics",
-    "StudioComponent",
     "Intersection",
     "Native NetWork"
   ],
