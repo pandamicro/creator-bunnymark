@@ -2,9 +2,7 @@
   "appKey": "",
   "appSecret": "",
   "encryptJs": false,
-  "excludeScenes": [
-    "b683b443-ffe6-4538-b9f6-d20aa8abb21f"
-  ],
+  "excludeScenes": [],
   "fb-instant-games": {
     "hide": false
   },
@@ -30,8 +28,8 @@
   },
   "renderMode": "0",
   "startScene": "3c04b3e4-c3a0-46e5-ac0f-f1feca151f24",
-  "title": "creator_bunny_2_0",
-  "webOrientation": "auto",
+  "title": "creator_bunny",
+  "webOrientation": "portrait",
   "wechatgame": {
     "appid": "wx6ac3f5090a6b99c5",
     "orientation": "portrait"
